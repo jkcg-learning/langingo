@@ -53,7 +53,12 @@ Ensure you have a credentials.json file with your Google Cloud service account c
     ```sh
     uvicorn server:app --host 0.0.0.0 --port 8000
 
-6. **Setting Up Twilio:**
+6. **Expose the local server to public IP using ngrok:**
+
+    ```sh
+    ngrok http 8000   
+
+7. **Setting Up Twilio:**
 
 Create a Twilio account and get a WhatsApp sandbox:
 
@@ -63,10 +68,10 @@ Create a Twilio account and get a WhatsApp sandbox:
 
 - Configure the WhatsApp sandbox:
 
-- Set the "WHEN A MESSAGE COMES IN" URL to http://your-server-ip:8000/whatsapp for your local testing or use your deployed server URL.
+- Set the "WHEN A MESSAGE COMES IN" URL to http://localhost:8000/whatsapp for your local testing or use your deployed server URL from ngrok
 
 
-7. **Test the application:**
+8. **Test the application:**
 
 Send a WhatsApp message to your Twilio sandbox number.
 
@@ -76,8 +81,7 @@ Example Requests
 
 To test the application locally, you can use tools like curl or Postman to send POST requests to the /whatsapp endpoint. Example using curl:
 
-    ```sh
-    curl -X POST http://localhost:8000/whatsapp -d "Body=What is the weather in Paris?"
+curl -X POST http://localhost:8000/whatsapp -d "Body=What is the weather in Paris?"
 
 
 
